@@ -5,6 +5,11 @@ import androidx.room.Room
 import com.plcoding.orangetask.BuildConfig
 import com.plcoding.orangetask.feature_movie.data.data_source.MovieDao
 import com.plcoding.orangetask.feature_movie.data.data_source.MovieDatabase
+import com.plcoding.orangetask.feature_movie.data.repository.MovieRepositoryImpl
+import com.plcoding.orangetask.feature_movie.domain.repository.MovieRepository
+import com.plcoding.orangetask.feature_movie.domain.use_case.GetMovie
+import com.plcoding.orangetask.feature_movie.domain.use_case.GetMovies
+import com.plcoding.orangetask.feature_movie.domain.use_case.MovieUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,11 +47,25 @@ object AppModule {
     }
 
     @Provides
+    @Singleton
+    fun provideMovieRepository(movieDao: MovieDao): MovieRepository {
+        return MovieRepositoryImpl(movieDao)
+    }
+
+    @Provides
     fun provideMovieDao(
         db: MovieDatabase
     ): MovieDao =
         db.movieDao()
 
+    @Provides
+    @Singleton
+    fun provideMovieUseCases(repository: MovieRepository): MovieUseCases {
+        return MovieUseCases(
+            getMovies = GetMovies(repository),
+            getMovie = GetMovie(repository)
+        )
+    }
 
 
     @ApplicationScope
