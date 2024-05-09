@@ -21,7 +21,8 @@ android {
         buildConfigField("String", "BASE_URL", providers.gradleProperty("baseUrl").get())
         buildConfigField("String", "API_KEY", providers.gradleProperty("apiKey").get())
 
-        testInstrumentationRunner = "com.plcoding.orangetask.MovieTestRunner"
+        testInstrumentationRunner =  "androidx.test.runner.AndroidJUnitRunner"
+
         vectorDrawables {
             useSupportLibrary = true
         }

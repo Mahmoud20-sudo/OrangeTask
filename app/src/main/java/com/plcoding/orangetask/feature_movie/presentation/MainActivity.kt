@@ -7,7 +7,6 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import com.plcoding.orangetask.ui.theme.CleanArchitectureNoteAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
 
