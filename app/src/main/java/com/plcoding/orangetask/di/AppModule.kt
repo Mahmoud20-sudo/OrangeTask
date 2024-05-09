@@ -3,6 +3,7 @@ package com.plcoding.orangetask.di
 import android.content.Context
 import androidx.room.Room
 import com.plcoding.orangetask.BuildConfig
+import com.plcoding.orangetask.feature_movie.data.api.Api
 import com.plcoding.orangetask.feature_movie.data.data_source.MovieDao
 import com.plcoding.orangetask.feature_movie.data.data_source.MovieDatabase
 import com.plcoding.orangetask.feature_movie.data.repository.MovieRepositoryImpl
@@ -31,6 +32,10 @@ object AppModule {
     fun provideRetrofit(): Retrofit =
         Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create()).build()
+
+    @Provides
+    @Singleton
+    fun provideApiInterface(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
 
 
     @Provides
