@@ -37,13 +37,6 @@ The android app lets you:
   ● Use Flicker to retrieve photos related to a movie 
   ● Needs no special permissions on Android 6.0+.
 
-## Screenshots
-
-![screenshot1](/Images/screenshot1.png)
-[<img src="/Images/screenshot1.jpg" align="left"
-width="200"
-    hspace="10" vspace="10">](/Images/screenshot1.jpg)
-
 
 ## Generating signed APK
 From Android Studio:
