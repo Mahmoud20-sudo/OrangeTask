@@ -7,10 +7,14 @@ import com.plcoding.orangetask.feature_movie.data.api.Api
 import com.plcoding.orangetask.feature_movie.data.data_source.MovieDao
 import com.plcoding.orangetask.feature_movie.data.data_source.MovieDatabase
 import com.plcoding.orangetask.feature_movie.data.repository.MovieRepositoryImpl
+import com.plcoding.orangetask.feature_movie.data.repository.PhotosRepositoryImpl
 import com.plcoding.orangetask.feature_movie.domain.repository.MovieRepository
+import com.plcoding.orangetask.feature_movie.domain.repository.PhotosRepository
 import com.plcoding.orangetask.feature_movie.domain.use_case.GetMovie
 import com.plcoding.orangetask.feature_movie.domain.use_case.GetMovies
+import com.plcoding.orangetask.feature_movie.domain.use_case.GetPhotos
 import com.plcoding.orangetask.feature_movie.domain.use_case.MovieUseCases
+import com.plcoding.orangetask.feature_movie.domain.use_case.PhotosUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -69,6 +73,21 @@ object AppModule {
         return MovieUseCases(
             getMovies = GetMovies(repository),
             getMovie = GetMovie(repository)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun providePhotosRepository(
+        api: Api
+    ): PhotosRepository =
+        PhotosRepositoryImpl(api = api)
+
+    @Provides
+    @Singleton
+    fun providePhotosUseCases(repository: PhotosRepository): PhotosUseCases {
+        return PhotosUseCases(
+            getPhotos = GetPhotos(repository)
         )
     }
 

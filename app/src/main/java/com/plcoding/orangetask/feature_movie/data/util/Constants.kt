@@ -4,4 +4,5 @@ object Constants {
     const val MOVIES_JSON_KEY = "movies"
     const val FLICKER_METHOD = "flickr.photos.search"
     const val FLICKER_FORMAT = "json"
+    const val FLICKER_OK_STAT = "ok"
 }

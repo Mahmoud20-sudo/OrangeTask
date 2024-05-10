@@ -6,9 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.plcoding.orangetask.feature_movie.presentation.details.MovieScreen
 import com.plcoding.orangetask.feature_movie.presentation.movies.MoviesScreen
 import com.plcoding.orangetask.feature_movie.presentation.util.Screen
 import com.plcoding.orangetask.ui.theme.CleanArchitectureNoteAppTheme
@@ -34,6 +37,22 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable(route = Screen.MoviesScreen.route) {
                             MoviesScreen(navController = navController)
+                        }
+                        composable(
+                            route = Screen.MovieDetailScreen.route +
+                                    "?movieId={movieId}",
+                            arguments = listOf(
+                                navArgument(
+                                    name = "movieId"
+                                ) {
+                                    type = NavType.IntType
+                                    defaultValue = -1
+                                }
+                            )
+                        ) {
+                            MovieScreen(
+                                navController = navController
+                            )
                         }
                     }
                 }
