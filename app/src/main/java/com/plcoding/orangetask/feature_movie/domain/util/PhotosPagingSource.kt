@@ -26,7 +26,7 @@ class PhotosPagingSource(
 
             val photos: PagedResponse<Photo> = result.data as PagedResponse<Photo>
 
-            val nextKey = if (photos == null || photos.data.isEmpty()) {
+            val nextKey = if (photos.data?.isEmpty() == true) {
                 null
             } else {
                 currentPageNumber + (params.loadSize / PAGE_SIZE)
@@ -35,7 +35,7 @@ class PhotosPagingSource(
             return LoadResult.Page(
                 prevKey = null,
                 nextKey = nextKey,
-                data = photos?.data ?: listOf()
+                data = photos.data ?: listOf()
             )
         } catch (e: Throwable) {
             LoadResult.Error(e)

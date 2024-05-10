@@ -21,8 +21,7 @@ android {
         buildConfigField("String", "BASE_URL", providers.gradleProperty("baseUrl").get())
         buildConfigField("String", "API_KEY", providers.gradleProperty("apiKey").get())
 
-        testInstrumentationRunner =  "androidx.test.runner.AndroidJUnitRunner"
-
+        testInstrumentationRunner = "com.plcoding.orangetask.MovieTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -138,8 +137,9 @@ dependencies {
     testImplementation("androidx.arch.core:core-testing:2.2.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     testImplementation("com.google.truth:truth:1.1.3")
-    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
     testImplementation("io.mockk:mockk:1.10.5")
+    testImplementation("androidx.test:runner:1.5.2")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.11.0")
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.6")
 
     // Instrumentation tests
@@ -151,7 +151,7 @@ dependencies {
     androidTestImplementation("com.google.truth:truth:1.1.3")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test:core-ktx:1.5.0")
-    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
+    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.11.0")
     androidTestImplementation("io.mockk:mockk-android:1.10.5")
     androidTestImplementation("androidx.test:runner:1.5.2")
 

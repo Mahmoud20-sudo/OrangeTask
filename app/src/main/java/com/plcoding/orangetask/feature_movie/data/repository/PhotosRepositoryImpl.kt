@@ -19,8 +19,8 @@ class PhotosRepositoryImpl(
             if (result.stat == FLICKER_OK_STAT)
                 Resource.Success(
                     PagedResponse(
-                        data = result.photos.photo,
-                        total = result.photos.photo.size,
+                        data = result.photos?.photo,
+                        total = result.photos?.photo?.size,
                         page = page
                     )
                 )
