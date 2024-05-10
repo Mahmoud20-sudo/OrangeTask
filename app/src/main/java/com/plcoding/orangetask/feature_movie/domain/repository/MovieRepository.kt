@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface MovieRepository {
     fun searchMovies(title: String): Flow<Resource<List<Movie>>>
 
-    suspend fun getMovieById(id: Int): Movie?
+    suspend fun getMovieByTitle(title: String): Movie?
 }

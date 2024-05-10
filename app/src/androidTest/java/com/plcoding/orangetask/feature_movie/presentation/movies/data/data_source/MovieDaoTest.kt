@@ -168,7 +168,7 @@ class MovieDaoTest {
         val moviesList = listOf(movie1)
         movieDao.insertMovie(moviesList)
 
-        val result = movieDao.getMovieById(1)
+        val result = movieDao.getMovieByTitle("Test Title1")
         assertThat(result).isEqualTo(movie1)
     }
 
@@ -186,7 +186,7 @@ class MovieDaoTest {
         val moviesList = listOf(movie1)
         movieDao.insertMovie(moviesList)
 
-        val result = movieDao.getMovieById(5)
+        val result = movieDao.getMovieByTitle("Non Existing")
         assertThat(result).isNull()
     }
 

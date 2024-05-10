@@ -19,5 +19,5 @@ class MovieRepositoryImpl(
         }
     }
 
-    override suspend fun getMovieById(id: Int): Movie = dao.getMovieById(id)
+    override suspend fun getMovieByTitle(title: String): Movie = dao.getMovieByTitle(title)
 }

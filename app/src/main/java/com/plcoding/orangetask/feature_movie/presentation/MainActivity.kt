@@ -26,34 +26,31 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             CleanArchitectureNoteAppTheme {
-                Surface(
-                    color = MaterialTheme.colors.background
-                ) {
-                    val navController = rememberNavController()
 
-                    NavHost(
-                        navController = navController,
-                        startDestination = Screen.MoviesScreen.route
+                val navController = rememberNavController()
+
+                NavHost(
+                    navController = navController,
+                    startDestination = Screen.MoviesScreen.route
+                ) {
+                    composable(route = Screen.MoviesScreen.route) {
+                        MoviesScreen(navController = navController)
+                    }
+                    composable(
+                        route = Screen.MovieDetailScreen.route +
+                                "?movieTitle={movieTitle}",
+                        arguments = listOf(
+                            navArgument(
+                                name = "movieTitle"
+                            ) {
+                                type = NavType.StringType
+                                defaultValue = ""
+                            }
+                        )
                     ) {
-                        composable(route = Screen.MoviesScreen.route) {
-                            MoviesScreen(navController = navController)
-                        }
-                        composable(
-                            route = Screen.MovieDetailScreen.route +
-                                    "?movieId={movieId}",
-                            arguments = listOf(
-                                navArgument(
-                                    name = "movieId"
-                                ) {
-                                    type = NavType.IntType
-                                    defaultValue = -1
-                                }
-                            )
-                        ) {
-                            MovieScreen(
-                                navController = navController
-                            )
-                        }
+                        MovieScreen(
+                            navController = navController
+                        )
                     }
                 }
             }

@@ -23,6 +23,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -34,6 +35,8 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.AsyncImage
 import com.plcoding.orangetask.feature_movie.data.model.flickr.Photo
 import com.plcoding.orangetask.feature_movie.util.Constants.LIST_COLUMN_COUNT
+import com.plcoding.orangetask.feature_movie.util.Constants.PHOTOS_LIST_TAG
+import com.plcoding.orangetask.feature_movie.util.Constants.TITLE_TAG
 import com.plcoding.orangetask.feature_movie.util.itemsPaging
 
 @Composable
@@ -42,6 +45,8 @@ fun MovieScreen(
     viewModel: MovieViewModel = hiltViewModel()
 ) {
     val movie = viewModel.movie.collectAsState()
+    val title = viewModel.search.collectAsState()
+
     val photos: LazyPagingItems<Photo> = viewModel.photosData.collectAsLazyPagingItems()
 
     val scope = rememberCoroutineScope()
@@ -52,15 +57,18 @@ fun MovieScreen(
         backgroundColor = Color.White,
         scaffoldState = scaffoldState,
         topBar = {
-            TopAppBar(title = {
-                Text(
-                    text = "${movie.value?.title}",
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    color = Color.White
-                )
-            }, backgroundColor = MaterialTheme.colorScheme.primary)
+            TopAppBar(
+                modifier = Modifier.testTag(TITLE_TAG),
+                title = {
+                    Text(
+                        text = title.value,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        color = Color.White
+                    )
+                }, backgroundColor = MaterialTheme.colorScheme.primary
+            )
         }
     ) { contentPadding ->
         Column(modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 20.dp)) {
@@ -126,7 +134,9 @@ fun MovieScreen(
                 verticalArrangement = Arrangement.spacedBy(10.dp),
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 contentPadding = PaddingValues(top = 16.dp),
-                modifier = Modifier.weight(1F)
+                modifier = Modifier
+                    .testTag(PHOTOS_LIST_TAG)
+                    .weight(1F)
             ) {
                 itemsPaging(photos) { photo: Photo? ->
                     AsyncImage(

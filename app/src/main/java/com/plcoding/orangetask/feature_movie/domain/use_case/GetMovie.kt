@@ -7,7 +7,7 @@ class GetMovie(
     private val repository: MovieRepository
 ) {
 
-    suspend operator fun invoke(id: Int): Movie? {
-        return repository.getMovieById(id)
+    suspend operator fun invoke(title: String): Movie? {
+        return repository.getMovieByTitle(title)
     }
 }

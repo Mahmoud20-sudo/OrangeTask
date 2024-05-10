@@ -25,7 +25,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.plcoding.orangetask.feature_movie.presentation.movies.MoviesViewModel
 
 @Composable
-fun BasicTextField(viewModel: MoviesViewModel = hiltViewModel()) {
+fun BasicTextField(
+    modifier: Modifier = Modifier,
+    viewModel: MoviesViewModel = hiltViewModel()) {
     val searchText = viewModel.searchText.collectAsState()
     val focusManager = LocalFocusManager.current
 
@@ -34,7 +36,7 @@ fun BasicTextField(viewModel: MoviesViewModel = hiltViewModel()) {
         onValueChange = viewModel::setSearchText,
         placeholder = { Text(text = "Search", color = Color.LightGray) },
         textStyle = TextStyle(color = Color.White),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
         colors = TextFieldDefaults.textFieldColors(

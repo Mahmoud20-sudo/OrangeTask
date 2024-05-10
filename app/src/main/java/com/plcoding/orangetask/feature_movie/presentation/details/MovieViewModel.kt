@@ -67,12 +67,12 @@ class MovieViewModel @Inject constructor(
         }
 
     init {
-        savedStateHandle.get<Int>("movieId")?.let { movieId ->
-            if (movieId != -1) {
+        savedStateHandle.get<String>("movieTitle")?.let { movieTitle ->
+            if (movieTitle.isNotBlank()) {
+                _search.value = movieTitle
                 viewModelScope.launch {
-                    movieUseCases.getMovie(movieId)?.also { movie ->
+                    movieUseCases.getMovie(movieTitle)?.also { movie ->
                         _movie.value = movie
-                        _search.value = movie.title
                     }
                 }
             }

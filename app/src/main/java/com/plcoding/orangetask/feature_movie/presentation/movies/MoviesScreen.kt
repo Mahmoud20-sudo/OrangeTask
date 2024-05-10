@@ -14,6 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -25,6 +26,8 @@ import com.plcoding.orangetask.feature_movie.data.model.movie.Movie
 import com.plcoding.orangetask.feature_movie.presentation.model.UiEvent
 import com.plcoding.orangetask.feature_movie.presentation.movies.components.BasicTextField
 import com.plcoding.orangetask.feature_movie.presentation.util.Screen
+import com.plcoding.orangetask.feature_movie.util.Constants
+import com.plcoding.orangetask.feature_movie.util.Constants.SEARCH_TAG
 import kotlinx.coroutines.flow.collectLatest
 
 @ExperimentalAnimationApi
@@ -54,14 +57,14 @@ fun MoviesScreen(
         modifier = Modifier.fillMaxSize()
     ) { contentPadding ->
         Column {
-            BasicTextField()
+            BasicTextField(Modifier.testTag(SEARCH_TAG))
             CategorizedLazyColumn(
                 movies = moviesList.value,
                 searchText = searchText.value
-            ) { id ->
+            ) { title ->
                 navController.navigate(
                     Screen.MovieDetailScreen.route +
-                            "?movieId=${id}"
+                            "?movieTitle=${title}"
                 )
             }
         }
@@ -109,10 +112,10 @@ private fun CategorizedLazyColumn(
     movies: List<Movie>,
     modifier: Modifier = Modifier,
     searchText: String = "",
-    onItemClick: (Int) -> Unit = {},
+    onItemClick: (String) -> Unit = {},
 ) {
     LazyColumn(
-        modifier = modifier
+        modifier = modifier.testTag(Constants.MOVIES_LIST_TAG)
     ) {
         if (searchText.isNotBlank()) {
             movies.categorize().forEach { category ->
@@ -120,17 +123,21 @@ private fun CategorizedLazyColumn(
                     CategoryHeader(category.name)
                 }
                 items(category.movies) { movie ->
-                    CategoryItem(movie.title, modifier = Modifier.clickable(true) {
-                        movie.id?.let { onItemClick.invoke(it) }
-                    })
+                    CategoryItem(movie.title,
+                        modifier = Modifier
+                            .clickable(true) {
+                                movie.title.let { onItemClick.invoke(it) }
+                            })
                 }
             }
             return@LazyColumn
         }
         items(movies) { movie ->
-            CategoryItem(movie.title, modifier = Modifier.clickable(true) {
-                movie.id?.let { onItemClick.invoke(it) }
-            })
+            CategoryItem(movie.title,
+                modifier = Modifier
+                    .clickable(true) {
+                        movie.title.let { onItemClick.invoke(it) }
+                    })
         }
     }
 }
