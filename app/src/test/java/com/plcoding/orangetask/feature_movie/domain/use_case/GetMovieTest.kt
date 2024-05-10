@@ -47,14 +47,14 @@ class GetMovieTest{
     }
 
     @Test
-    fun `search existing id, returns movie`() = runTest {
-        val result = getMovie.invoke(2)
+    fun `search existing title, returns movie`() = runTest {
+        val result = getMovie.invoke("Title1")
         assertThat(result).isNotNull()
     }
 
     @Test(expected = RuntimeException::class)
-    fun `search non-existing id, returns null`() = runTest {
-        val result = getMovie.invoke(990)
+    fun `search non-existing title, returns null`() = runTest {
+        val result = getMovie.invoke("Non Existing")
         assertThat(result).isNull()
     }
 }

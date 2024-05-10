@@ -27,6 +27,7 @@ class GetMoviesTest {
     fun setup() {
         repository = MoviesFakeRepository()
         getMovies = GetMovies(repository)
+        // Fill List Of 3 Items
         (1..3).forEach { i ->
             val movie = Movie(
                 title = "Title$i",
@@ -55,6 +56,6 @@ class GetMoviesTest {
     @Test
     fun `search empty title, returns all data`() = runTest {
         val result = getMovies.invoke("")
-        assertThat(result.first().data).isNotEmpty()
+        assertThat(result.first().data).hasSize(3)
     }
 }

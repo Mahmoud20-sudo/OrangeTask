@@ -17,7 +17,7 @@ class MoviesFakeRepository : MovieRepository {
             )
         }))
 
-    override suspend fun getMovieById(id: Int): Movie = movies.first { it.id == id }
+    override suspend fun getMovieByTitle(title: String): Movie = movies.first { it.title == title }
 
     fun insertMovie(movie: Movie) {
         movies.add(movie)
