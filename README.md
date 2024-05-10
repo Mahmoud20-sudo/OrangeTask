@@ -44,9 +44,6 @@ From Android Studio:
 2. ***Generate Signed APK...***
 3. Fill in the keystore information *(you only need to do this once manually and then let Android Studio remember it)*
 
-## Maintainers
-This project is mantained by:
-* [Mahmoud Mohamed](https://github.com/Mahmoud20-sudo)
 
 ## Permissions
 
