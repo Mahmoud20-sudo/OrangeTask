@@ -39,9 +39,10 @@ The android app lets you:
 
 ## Screenshots
 
-<img width="383" alt="Screenshot 2024-05-10 at 7 03 47 AM" src="https://github.com/Mahmoud20-sudo/OrangeTask/assets/62750799/4b276e63-2515-48a1-809a-50586a8a877c">
-<img width="385" alt="Screenshot 2024-05-10 at 7 03 59 AM" src="https://github.com/Mahmoud20-sudo/OrangeTask/assets/62750799/2745d56c-71a5-47c7-87bc-b969030cc4f2">
-<img width="385" alt="Screenshot 2024-05-10 at 7 04 14 AM" src="https://github.com/Mahmoud20-sudo/OrangeTask/assets/62750799/3d7e11e4-0911-4ea7-8267-0f891fbda1d7">
+![screenshot1](/Images/screenshot1.png)
+[<img src="/Images/screenshot1.jpg" align="left"
+width="200"
+    hspace="10" vspace="10">](/Images/screenshot1.jpg)
 
 
 ## Generating signed APK
