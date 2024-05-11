@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface Api {
     @GET("/services/rest/?")
     suspend fun getImages(
-        @Query("text") text: String,
+        @Query("text", encoded = true) text: String,
         @Query("page") page: Int,
         @Query("per_page") perPage: Int = 20,
         @Query("method") method: String = FLICKER_METHOD,
