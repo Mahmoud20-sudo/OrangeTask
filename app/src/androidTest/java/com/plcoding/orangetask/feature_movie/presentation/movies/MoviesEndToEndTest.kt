@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.test.espresso.Espresso
+import androidx.test.filters.LargeTest
 import com.plcoding.orangetask.feature_movie.presentation.MainActivity
 import com.plcoding.orangetask.feature_movie.presentation.details.MovieScreen
 import com.plcoding.orangetask.feature_movie.presentation.util.Screen
@@ -29,6 +30,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @HiltAndroidTest
+@LargeTest
 class MoviesEndToEndTest {
 
     @get:Rule(order = 1)
