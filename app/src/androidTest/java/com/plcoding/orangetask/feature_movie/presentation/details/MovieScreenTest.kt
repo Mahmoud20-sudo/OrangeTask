@@ -66,17 +66,6 @@ class MovieScreenTest {
             }
         }
     }
-
-    @Test
-    fun testTitleIsDisplayed() {
-        composeRule.onNodeWithTag(TITLE_TAG).assertIsDisplayed()
-    }
-
-    @Test
-    fun testPhotosListIsExists() {
-        composeRule.onNodeWithTag(PHOTOS_LIST_TAG).assertExists()
-    }
-
     @Test
     fun testPhotosListIsDisplayed() {
         // WAIT UNTIL PHOTOS DISPLAYED
@@ -84,4 +73,15 @@ class MovieScreenTest {
         composeRule.onNodeWithTag(PHOTOS_LIST_TAG).assertIsDisplayed()
     }
 
+    @Test
+    fun testTitleIsDisplayed() {
+        composeRule.waitUntilTimeout(500L)
+        composeRule.onNodeWithTag(TITLE_TAG).assertIsDisplayed()
+    }
+
+    @Test
+    fun testPhotosListIsExists() {
+        composeRule.waitUntilTimeout(500L)
+        composeRule.onNodeWithTag(PHOTOS_LIST_TAG).assertExists()
+    }
 }
