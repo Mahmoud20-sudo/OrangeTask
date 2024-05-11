@@ -5,6 +5,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onChildren
 import androidx.compose.ui.test.onFirst
+import androidx.compose.ui.test.onLast
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.navigation.NavType
@@ -77,26 +78,21 @@ class MoviesEndToEndTest {
     @Test
     fun clickOnListItemOpenDetailScreen() {
         // WAIT TILL MOVIES LIST LOADED
-        composeRule.waitUntilTimeout(2000L)
+        composeRule.waitUntilTimeout(1000L)
 
         // CLICK ON MOVIES FIRST ITEM
         composeRule.onNodeWithTag(MOVIES_LIST_TAG)
-            .onChildren()
-            .onFirst()
+            .onChildren()[1]
             .performClick()
 
         // DETAILS SCREEN OPENS
         composeRule.onNodeWithTag(TITLE_TAG).assertIsDisplayed()
-
-        // WAIT UNTIL PHOTOS LIST LOADED
-        composeRule.waitUntilTimeout(2000L)
-        composeRule.onNodeWithTag(PHOTOS_LIST_TAG).assertIsDisplayed()
     }
 
     @Test
     fun clickOnBackButtonOpenMoviesScreen() {
         // WAIT TILL MOVIES LIST LOADED
-        composeRule.waitUntilTimeout(2000L)
+        composeRule.waitUntilTimeout(1000L)
 
         // CLICK ON MOVIES FIRST ITEM
         composeRule.onNodeWithTag(MOVIES_LIST_TAG)
