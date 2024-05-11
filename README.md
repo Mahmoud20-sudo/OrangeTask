@@ -34,7 +34,8 @@ The android app lets you:
   ● See a list of movies 
   ● Search for any top rated movie catgeorized by year
   ● Switching between list and details screens
-  ● Use Flicker to retrieve photos related to a movie 
+  ● Use Flicker to retrieve photos related to a movie
+  ● Includign UNIT-TESTS, INSTRUMENTAL-TESTS and UI-TESTS
   ● Needs no special permissions on Android 6.0+.
 
 
