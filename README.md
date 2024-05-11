@@ -1,6 +1,6 @@
 # Movie App
 
-This is an example Android Application README to show briefly the sections your app README should contain.
+A decade of Movies app
 
 ## Installation
 Clone this repository and import into **Android Studio**
